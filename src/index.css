@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Marine Biodiversity Platform Design System - Dark Ocean Theme */
+
+@layer base {
+  :root {
+    /* Ocean Deep - Primary Backgrounds */
+    --background: 0 0% 13%;  /* #212121 */
+    --surface: 0 0% 20%;     /* #323232 */
+    --foreground: 180 100% 97%; /* Near white with cyan tint */
+
+    /* Marine Teal Accents */
+    --primary: 182 86% 25%;     /* #0D7377 */
+    --primary-foreground: 180 100% 97%;
+    --primary-glow: 182 86% 35%;
+
+    /* Cyan Highlights */  
+    --accent: 181 100% 53%;     /* #14FFEC */
+    --accent-foreground: 0 0% 13%;
+    --accent-glow: 181 100% 63%;
+
+    /* Surface variations */
+    --card: 0 0% 16%;           /* Slightly lighter than background */
+    --card-foreground: 180 100% 97%;
+    
+    --secondary: 0 0% 18%;      /* Between background and surface */
+    --secondary-foreground: 180 50% 80%;
+
+    --muted: 0 0% 25%;          /* Darker surface elements */
+    --muted-foreground: 180 30% 65%;
+
+    /* Interactive states */
+    --border: 182 50% 20%;      /* Subtle teal border */
+    --input: 0 0% 18%;
+    --ring: 181 100% 53%;       /* Cyan focus ring */
+
+    /* Status colors */
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 180 100% 97%;
+    --success: 150 85% 45%;
+    --success-foreground: 180 100% 97%;
+    --warning: 45 90% 55%;
+    --warning-foreground: 0 0% 13%;
+
+    /* Sidebar - Deeper ocean */
+    --sidebar-background: 0 0% 11%;     /* Darker than main background */
+    --sidebar-foreground: 180 50% 80%;
+    --sidebar-primary: 182 86% 25%;
+    --sidebar-primary-foreground: 180 100% 97%;
+    --sidebar-accent: 0 0% 16%;
+    --sidebar-accent-foreground: 180 100% 97%;
+    --sidebar-border: 182 30% 15%;
+    --sidebar-ring: 181 100% 53%;
+
+    /* Effects and gradients */
+    --gradient-ocean: linear-gradient(135deg, hsl(var(--background)), hsl(var(--surface)));
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent-glow)));
+    --gradient-depth: linear-gradient(180deg, hsl(var(--background)), hsl(0 0% 8%));
+
+    /* Glows and shadows */
+    --glow-primary: 0 0 20px hsl(var(--primary) / 0.3);
+    --glow-accent: 0 0 30px hsl(var(--accent) / 0.4);
+    --shadow-ocean: 0 10px 40px -10px hsl(180 100% 5% / 0.4);
+    --shadow-elevated: 0 20px 60px -10px hsl(180 100% 3% / 0.6);
+
+    /* Animation timings */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.75rem;
+  }
+
+  /* Force dark mode for this marine platform */
+  .light {
+    /* Redirect light mode to dark values */
+    --background: 0 0% 13%;
+    --surface: 0 0% 20%;
+    --foreground: 180 100% 97%;
+    --primary: 182 86% 25%;
+    --primary-foreground: 180 100% 97%;
+    --accent: 181 100% 53%;
+    --accent-foreground: 0 0% 13%;
+    --card: 0 0% 16%;
+    --card-foreground: 180 100% 97%;
+    --secondary: 0 0% 18%;
+    --secondary-foreground: 180 50% 80%;
+    --muted: 0 0% 25%;
+    --muted-foreground: 180 30% 65%;
+    --border: 182 50% 20%;
+    --input: 0 0% 18%;
+    --ring: 181 100% 53%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Scrollbar styling for webkit browsers */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-surface;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-accent/60;
+  }
+
+  /* Selection styling */
+  ::selection {
+    @apply bg-accent/30 text-accent;
+  }
+
+  /* Focus ring improvements */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+}
+
+/* Custom component classes using design system tokens */
+@layer components {
+  /* Ocean-themed gradient backgrounds */
+  .bg-ocean-gradient {
+    background: var(--gradient-ocean);
+  }
+
+  .bg-depth-gradient {
+    background: var(--gradient-depth);
+  }
+
+  /* Glow effects */
+  .glow-accent {
+    box-shadow: var(--glow-accent);
+  }
+
+  .glow-primary {
+    box-shadow: var(--glow-primary);
+  }
+
+  /* Interactive hover states */
+  .hover-glow {
+    transition: var(--transition-smooth);
+  }
+
+  .hover-glow:hover {
+    box-shadow: var(--glow-accent);
+    transform: translateY(-1px);
+  }
+
+  /* Data visualization elements */
+  .data-point {
+    @apply w-3 h-3 rounded-full border-2 border-accent/50 bg-accent/20;
+    transition: var(--transition-smooth);
+  }
+
+  .data-point:hover {
+    @apply border-accent bg-accent/40 scale-125;
+    box-shadow: var(--glow-accent);
+  }
+
+  /* Marine-themed loading animations */
+  .pulse-ocean {
+    animation: pulse-ocean 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse-ocean {
+    0%, 100% {
+      opacity: 1;
+      box-shadow: 0 0 0 0 hsl(var(--accent) / 0.7);
+    }
+    50% {
+      opacity: 0.7;
+      box-shadow: 0 0 0 10px hsl(var(--accent) / 0);
+    }
+  }
+
+  /* Status indicators */
+  .status-online {
+    @apply bg-success;
+    box-shadow: 0 0 10px hsl(var(--success) / 0.5);
+  }
+
+  .status-processing {
+    @apply bg-warning;
+    box-shadow: 0 0 10px hsl(var(--warning) / 0.5);
+  }
+
+  .status-offline {
+    @apply bg-destructive;
+    box-shadow: 0 0 10px hsl(var(--destructive) / 0.5);
+  }
+}
